@@ -53,7 +53,8 @@ const recipes = [
       "Жарить на слабом огне под крышкой 3 мин, перевернуть",
       "Довести до готовности ещё 2–3 мин",
     ],
-    note: "Натуральная сладость яблока — никакого сахара. Замораживать стопкой через пергамент.",
+    note: "Натуральная сладость яблока — никакого сахара.",
+    freeze: { how: "Остудить, сложить стопкой через пергамент → в зип-пакет", reheat: "Сковорода без масла 2 мин или духовка 160°C / 8 мин", shelf: "до 2 месяцев" },
   },
   {
     emoji: "🥦",
@@ -69,7 +70,8 @@ const recipes = [
       "Выложить в силиконовые формочки для маффинов",
       "Запечь при 175°C 22–25 мин до пружинистости",
     ],
-    note: "Порционные кубики удобно держать в ручке. Хранить 2 дня в холодильнике.",
+    note: "Порционные кубики удобно держать в ручке.",
+    freeze: { how: "Полностью остудить → заморозить в формочках → вынуть и в пакет", reheat: "Прямо из морозилки в духовку 175°C / 15 мин", shelf: "до 2 месяцев" },
   },
   {
     emoji: "🎃",
@@ -85,7 +87,8 @@ const recipes = [
       "Выложить на пергамент",
       "Запечь при 185°C 20 мин, перевернуть, ещё 5 мин",
     ],
-    note: "Красивый оранжевый цвет и мягкая текстура — идеально для самостоятельной еды.",
+    note: "Красивый оранжевый цвет — идеально для самостоятельной еды.",
+    freeze: { how: "Слепить сырыми → заморозить в один слой на доске → в пакет", reheat: "Прямо из заморозки в духовку 185°C / 28–30 мин", shelf: "до 3 месяцев" },
   },
   {
     emoji: "🌿",
@@ -98,10 +101,11 @@ const recipes = [
       "Шпинат залить кипятком на 1 мин, отжать и мелко нарубить",
       "Смешать с творогом, сыром, яйцом и манкой",
       "Дать постоять 15 мин, пока манка набухнет",
-      "Влажными руками скатать шарики размером с ягоду виноград",
+      "Влажными руками скатать шарики размером с виноградину",
       "Запечь при 180°C 18–20 мин до золотистой корочки",
     ],
-    note: "Зелёный цвет — не пугай малыша, сам удивится как вкусно! С 7 мес.",
+    note: "Зелёный цвет — не пугай малыша, сам удивится как вкусно!",
+    freeze: { how: "Скатать сырыми → заморозить в один слой → ссыпать в пакет", reheat: "Из заморозки в духовку 180°C / 22–25 мин, не размораживая", shelf: "до 2 месяцев" },
   },
   {
     emoji: "🥔",
@@ -117,7 +121,8 @@ const recipes = [
       "Выложить на пергамент, слегка прижать",
       "Запечь при 190°C 25 мин — должны держать форму",
     ],
-    note: "Удобно держать в кулаке — отлично тренирует пинцетный захват.",
+    note: "Удобно держать в кулаке — тренирует пинцетный захват.",
+    freeze: { how: "Слепить сырыми → заморозить на доске 3 ч → переложить в пакет", reheat: "Прямо из заморозки в духовку 190°C / 30 мин, перевернуть в середине", shelf: "до 3 месяцев" },
   },
   {
     emoji: "🍅",
@@ -133,7 +138,8 @@ const recipes = [
       "Распределить по силиконовым формочкам для мини-маффинов",
       "Запечь при 180°C 20–22 мин",
     ],
-    note: "Фета — с 10 мес., выбирай с минимальным содержанием соли. Очень сочные!",
+    note: "Фета — с 10 мес., выбирай с минимальным содержанием соли.",
+    freeze: { how: "Остудить в формочках → вынуть, сложить в контейнер с крышкой", reheat: "Духовка 175°C / 12–15 мин или микроволновка 1 мин (только разогрев!)", shelf: "до 2 месяцев" },
   },
 ];
 
@@ -418,6 +424,24 @@ export default function Index() {
                 <div className="mt-4 flex items-start gap-2 p-3 rounded-xl" style={{ background: "var(--sky-light)" }}>
                   <span>💛</span>
                   <p className="font-body text-[13px]" style={{ color: "var(--text-mid)" }}>{r.note}</p>
+                </div>
+                {/* Блок заморозки */}
+                <div className="mt-3 rounded-xl overflow-hidden" style={{ border: "1.5px solid #B8D8F0" }}>
+                  <div className="flex items-center gap-2 px-4 py-2" style={{ background: "var(--sky-deep)" }}>
+                    <span className="text-base">❄️</span>
+                    <span className="font-body text-xs font-semibold text-white uppercase tracking-wider">Заморозка</span>
+                    <span className="ml-auto font-body text-xs text-white opacity-80">{r.freeze.shelf}</span>
+                  </div>
+                  <div className="px-4 py-3 space-y-2" style={{ background: "#EEF7FD" }}>
+                    <div className="flex items-start gap-2">
+                      <span className="font-body text-xs font-medium min-w-fit" style={{ color: "var(--sky-deep)" }}>Как:</span>
+                      <p className="font-body text-[13px]" style={{ color: "var(--text-dark)" }}>{r.freeze.how}</p>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="font-body text-xs font-medium min-w-fit" style={{ color: "var(--sky-deep)" }}>Разогрев:</span>
+                      <p className="font-body text-[13px]" style={{ color: "var(--text-dark)" }}>{r.freeze.reheat}</p>
+                    </div>
+                  </div>
                 </div>
                 <div className="mt-4 text-right font-handwritten text-sm" style={{ color: "var(--text-light)" }}>@mmdianamama</div>
               </div>
